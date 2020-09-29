@@ -13,7 +13,7 @@
 </h3>
 
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/viniciusbsneto/url-manager?color=green">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/viniciusbsneto/url-manager?color=blue">
 
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/viniciusbsneto/url-manager">
   
@@ -21,13 +21,13 @@
     <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/viniciusbsneto/url-manager">
   </a>
     
-   <img alt="License" src="https://img.shields.io/badge/license-MIT-green">
+   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
    <a href="https://github.com/viniciusbsneto/url-manager/stargazers">
     <img alt="Stargazers" src="https://img.shields.io/github/stars/viniciusbsneto/url-manager?style=social">
   </a>
 
   <a href="https://github.com/viniciusbsneto">
-    <img alt="made by viniciusbsneto" src="https://img.shields.io/badge/-viniciusbsneto-green">
+    <img alt="made by viniciusbsneto" src="https://img.shields.io/badge/-viniciusbsneto-blue">
   </a>
 </p>
 
