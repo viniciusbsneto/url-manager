@@ -37,6 +37,27 @@ urlsRouter.get('/:id', (request, response) => {
   return response.status(200).json(urlFound);
 });
 
+urlsRouter.put('/:id', (request, response) => {
+  const { id } = request.params;
+  const { address, description } = request.body;
+
+  const urlFoundIndex = urls.findIndex(url => url.id === id);
+
+  if (urlFoundIndex < 0) {
+    return response.status(401).json({ error: 'URL not found.' });
+  }
+
+  const url = {
+    id,
+    address,
+    description,
+  };
+
+  urls[urlFoundIndex] = url;
+
+  return response.status(200).json(url);
+});
+
 urlsRouter.delete('/:id', (request, response) => {
   const { id } = request.params;
 
