@@ -76,7 +76,7 @@ $ git clone git@github.com:viniciusbsneto/url-manager.git
 #### Back-end
 ```bash
 
-# Access the front-end project folder
+# Access the back-end project folder
 $ cd url-manager/api
 
 # Install dependencies
