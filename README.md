@@ -76,6 +76,17 @@ $ git clone git@github.com:viniciusbsneto/url-manager.git
 #### Back-end
 ```bash
 
+# Access the front-end project folder
+$ cd url-manager/api
+
+# Install dependencies
+$ yarn
+
+# Start the application
+$ yarn dev:server
+
+# Yarn script will start the application at http://localhost:3333
+
 ```
 #### Front-end
 ```bash
