@@ -21,4 +21,8 @@ urlsRouter.post('/', (request, response) => {
   return response.status(201).json(url);
 });
 
+urlsRouter.get('/', (request, response) => {
+  return response.json(urls);
+});
+
 export default urlsRouter;
