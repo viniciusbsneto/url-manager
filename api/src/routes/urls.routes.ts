@@ -25,4 +25,16 @@ urlsRouter.get('/', (request, response) => {
   return response.json(urls);
 });
 
+urlsRouter.get('/:id', (request, response) => {
+  const { id } = request.params;
+
+  const urlFound = urls.find(url => url.id === id);
+
+  if (!urlFound) {
+    return response.status(400).json({ error: 'URL not found.' });
+  }
+
+  return response.status(200).json(urlFound);
+});
+
 export default urlsRouter;
