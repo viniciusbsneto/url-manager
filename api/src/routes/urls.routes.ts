@@ -44,7 +44,7 @@ urlsRouter.put('/:id', (request, response) => {
   const urlFoundIndex = urls.findIndex(url => url.id === id);
 
   if (urlFoundIndex < 0) {
-    return response.status(401).json({ error: 'URL not found.' });
+    return response.status(400).json({ error: 'URL not found.' });
   }
 
   const url = {
