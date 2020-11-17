@@ -1,11 +1,9 @@
 import { Router } from 'express';
-import URL from '../models/URL';
 import UrlsRepository from '../repositories/UrlsRepository';
 
 const urlsRouter = Router();
 
 const urlsRepository = new UrlsRepository();
-const urls: URL[] = [];
 
 urlsRouter.post('/', (request, response) => {
   const { address, description } = request.body;
