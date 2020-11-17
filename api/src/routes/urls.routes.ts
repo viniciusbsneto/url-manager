@@ -28,13 +28,13 @@ urlsRouter.get('/', (request, response) => {
 urlsRouter.get('/:id', (request, response) => {
   const { id } = request.params;
 
-  const urlFound = urls.find(url => url.id === id);
+  const url = urlsRepository.findById(id);
 
-  if (!urlFound) {
+  if (!url) {
     return response.status(400).json({ error: 'URL not found.' });
   }
 
-  return response.status(200).json(urlFound);
+  return response.status(200).json(url);
 });
 
 urlsRouter.put('/:id', (request, response) => {
