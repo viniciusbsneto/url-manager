@@ -24,6 +24,16 @@ class UrlsRepository {
   public all(): URL[] {
     return this.urls;
   }
+
+  public findById(id: string): URL | null {
+    const urlFound = this.urls.find(url => url.id === id);
+
+    if (!urlFound) {
+      return null;
+    }
+
+    return urlFound;
+  }
 }
 
 export default UrlsRepository;
