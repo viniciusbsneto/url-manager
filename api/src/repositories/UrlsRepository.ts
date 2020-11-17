@@ -55,6 +55,18 @@ class UrlsRepository {
 
     return url;
   }
+
+  public delete(id: string): boolean {
+    const index = this.urls.findIndex(url => url.id === id);
+
+    if (index < 0) {
+      return false;
+    }
+
+    this.urls.splice(index, 1);
+
+    return true;
+  }
 }
 
 export default UrlsRepository;
