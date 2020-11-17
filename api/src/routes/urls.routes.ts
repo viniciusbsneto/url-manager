@@ -1,22 +1,20 @@
 import { Router } from 'express';
 import URL from '../models/URL';
+import UrlsRepository from '../repositories/UrlsRepository';
 
 const urlsRouter = Router();
 
+const urlsRepository = new UrlsRepository();
 const urls: URL[] = [];
 
 urlsRouter.post('/', (request, response) => {
   const { address, description } = request.body;
 
-  const urlFound = urls.find(url => url.address === address);
+  const url = urlsRepository.create(address, description);
 
-  if (urlFound) {
+  if (!url) {
     return response.status(400).json({ error: 'URL already exists.' });
   }
-
-  const url = new URL(address, description);
-
-  urls.push(url);
 
   return response.status(201).json(url);
 });
