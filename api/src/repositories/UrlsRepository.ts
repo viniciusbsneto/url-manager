@@ -5,6 +5,12 @@ interface CreateUrlDTO {
   description: string;
 }
 
+interface UpdateUrlDTO {
+  id: string;
+  address: string;
+  description: string;
+}
+
 class UrlsRepository {
   private urls: URL[];
 
@@ -40,10 +46,7 @@ class UrlsRepository {
     return urlFound;
   }
 
-  public update(
-    id: string,
-    { address, description }: { address: string; description: string },
-  ): URL | null {
+  public update({ id, address, description }: UpdateUrlDTO): URL | null {
     const urlFoundIndex = this.urls.findIndex(url => url.id === id);
 
     if (urlFoundIndex < 0) {
