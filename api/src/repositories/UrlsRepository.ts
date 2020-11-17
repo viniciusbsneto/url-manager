@@ -34,6 +34,27 @@ class UrlsRepository {
 
     return urlFound;
   }
+
+  public update(
+    id: string,
+    { address, description }: { address: string; description: string },
+  ): URL | null {
+    const urlFoundIndex = this.urls.findIndex(url => url.id === id);
+
+    if (urlFoundIndex < 0) {
+      return null;
+    }
+
+    const url = {
+      id,
+      address,
+      description,
+    };
+
+    this.urls[urlFoundIndex] = url;
+
+    return url;
+  }
 }
 
 export default UrlsRepository;
