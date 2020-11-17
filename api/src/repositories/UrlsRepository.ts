@@ -20,6 +20,10 @@ class UrlsRepository {
 
     return url;
   }
+
+  public all(): URL[] {
+    return this.urls;
+  }
 }
 
 export default UrlsRepository;
