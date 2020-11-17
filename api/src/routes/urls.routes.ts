@@ -56,14 +56,11 @@ urlsRouter.put('/:id', (request, response) => {
 urlsRouter.delete('/:id', (request, response) => {
   const { id } = request.params;
 
-  const urlFound = urls.find(url => url.id === id);
+  const urlDeleted = urlsRepository.delete(id);
 
-  if (!urlFound) {
+  if (!urlDeleted) {
     return response.status(400).json({ error: 'URL not found.' });
   }
-
-  const index = urls.indexOf(urlFound);
-  urls.splice(index, 1);
 
   return response.status(204).send();
 });
