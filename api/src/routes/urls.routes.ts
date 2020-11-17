@@ -8,7 +8,7 @@ const urlsRepository = new UrlsRepository();
 urlsRouter.post('/', (request, response) => {
   const { address, description } = request.body;
 
-  const url = urlsRepository.create(address, description);
+  const url = urlsRepository.create({ address, description });
 
   if (!url) {
     return response.status(400).json({ error: 'URL already exists.' });
@@ -39,10 +39,7 @@ urlsRouter.put('/:id', (request, response) => {
   const { id } = request.params;
   const { address, description } = request.body;
 
-  const url = urlsRepository.update(id, {
-    address,
-    description,
-  });
+  const url = urlsRepository.update({ id, address, description });
 
   if (!url) {
     return response.status(400).json({ error: 'URL not found.' });
