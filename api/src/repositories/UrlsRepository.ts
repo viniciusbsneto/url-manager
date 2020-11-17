@@ -1,5 +1,10 @@
 import URL from '../models/URL';
 
+interface CreateUrlDTO {
+  address: string;
+  description: string;
+}
+
 class UrlsRepository {
   private urls: URL[];
 
@@ -7,14 +12,14 @@ class UrlsRepository {
     this.urls = [];
   }
 
-  public create(address: string, description: string): URL | null {
+  public create({ address, description }: CreateUrlDTO): URL | null {
     const urlFound = this.urls.find(url => url.address === address);
 
     if (urlFound) {
       return null;
     }
 
-    const url = new URL(address, description);
+    const url = new URL({ address, description });
 
     this.urls.push(url);
 
