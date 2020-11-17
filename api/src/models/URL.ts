@@ -7,7 +7,7 @@ class URL {
 
   description: string;
 
-  constructor(address: string, description: string) {
+  constructor({ address, description }: Omit<URL, 'id'>) {
     this.id = uuidv4();
     this.address = address;
     this.description = description;
