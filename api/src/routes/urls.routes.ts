@@ -20,7 +20,9 @@ urlsRouter.post('/', (request, response) => {
 });
 
 urlsRouter.get('/', (request, response) => {
-  return response.json(urls);
+  const allUrls = urlsRepository.all();
+
+  return response.json(allUrls);
 });
 
 urlsRouter.get('/:id', (request, response) => {
