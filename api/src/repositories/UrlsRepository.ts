@@ -6,7 +6,6 @@ interface CreateUrlDTO {
 }
 
 interface UpdateUrlDTO {
-  id: string;
   address: string;
   description: string;
 }
@@ -18,13 +17,7 @@ class UrlsRepository {
     this.urls = [];
   }
 
-  public create({ address, description }: CreateUrlDTO): URL | null {
-    const urlFound = this.urls.find(url => url.address === address);
-
-    if (urlFound) {
-      return null;
-    }
-
+  public create({ address, description }: CreateUrlDTO): URL {
     const url = new URL({ address, description });
 
     this.urls.push(url);
@@ -39,19 +32,20 @@ class UrlsRepository {
   public findById(id: string): URL | null {
     const urlFound = this.urls.find(url => url.id === id);
 
-    if (!urlFound) {
-      return null;
-    }
-
-    return urlFound;
+    return urlFound || null;
   }
 
-  public update({ id, address, description }: UpdateUrlDTO): URL | null {
-    const urlFoundIndex = this.urls.findIndex(url => url.id === id);
+  public findByAddress(address: string): URL | null {
+    const urlFound = this.urls.find(url => url.address === address);
 
-    if (urlFoundIndex < 0) {
-      return null;
-    }
+    return urlFound || null;
+  }
+
+  public update(
+    id: string,
+    { address, description }: UpdateUrlDTO,
+  ): URL | null {
+    const urlIndex = this.urls.findIndex(url => url.id === id);
 
     const url = {
       id,
@@ -59,21 +53,15 @@ class UrlsRepository {
       description,
     };
 
-    this.urls[urlFoundIndex] = url;
+    this.urls[urlIndex] = url;
 
     return url;
   }
 
-  public delete(id: string): boolean {
+  public delete(id: string): void {
     const index = this.urls.findIndex(url => url.id === id);
 
-    if (index < 0) {
-      return false;
-    }
-
     this.urls.splice(index, 1);
-
-    return true;
   }
 }
 
