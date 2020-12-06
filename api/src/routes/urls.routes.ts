@@ -1,63 +1,76 @@
 import { Router } from 'express';
+
 import UrlsRepository from '../repositories/UrlsRepository';
+import CreateUrlService from '../services/CreateUrlService';
+import DeleteUrlService from '../services/DeleteUrlService';
+import UpdateUrlService from '../services/UpdateUrlService';
 
 const urlsRouter = Router();
-
 const urlsRepository = new UrlsRepository();
 
 urlsRouter.post('/', (request, response) => {
-  const { address, description } = request.body;
+  try {
+    const { address, description } = request.body;
 
-  const url = urlsRepository.create({ address, description });
+    const createUrlService = new CreateUrlService(urlsRepository);
 
-  if (!url) {
-    return response.status(400).json({ error: 'URL already exists.' });
+    const url = createUrlService.execute({ address, description });
+
+    return response.status(201).json(url);
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
   }
-
-  return response.status(201).json(url);
 });
 
 urlsRouter.get('/', (request, response) => {
   const allUrls = urlsRepository.all();
 
-  return response.json(allUrls);
+  return response.status(200).json(allUrls);
 });
 
 urlsRouter.get('/:id', (request, response) => {
-  const { id } = request.params;
+  try {
+    const { id } = request.params;
 
-  const url = urlsRepository.findById(id);
+    const url = urlsRepository.findById(id);
 
-  if (!url) {
-    return response.status(400).json({ error: 'URL not found.' });
+    if (!url) {
+      throw new Error('URL not found.');
+    }
+
+    return response.status(200).json(url);
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
   }
-
-  return response.status(200).json(url);
 });
 
 urlsRouter.put('/:id', (request, response) => {
-  const { id } = request.params;
-  const { address, description } = request.body;
+  try {
+    const { id } = request.params;
+    const { address, description } = request.body;
 
-  const url = urlsRepository.update({ id, address, description });
+    const updateUrlService = new UpdateUrlService(urlsRepository);
 
-  if (!url) {
-    return response.status(400).json({ error: 'URL not found.' });
+    const url = updateUrlService.execute(id, { address, description });
+
+    return response.status(200).json(url);
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
   }
-
-  return response.status(200).json(url);
 });
 
 urlsRouter.delete('/:id', (request, response) => {
-  const { id } = request.params;
+  try {
+    const { id } = request.params;
 
-  const urlDeleted = urlsRepository.delete(id);
+    const deleteUrlService = new DeleteUrlService(urlsRepository);
 
-  if (!urlDeleted) {
-    return response.status(400).json({ error: 'URL not found.' });
+    deleteUrlService.execute(id);
+
+    return response.status(204).send();
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
   }
-
-  return response.status(204).send();
 });
 
 export default urlsRouter;
