@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
-import UrlsRepository from '../repositories/UrlsRepository';
-import CreateUrlService from '../services/CreateUrlService';
-import DeleteUrlService from '../services/DeleteUrlService';
-import UpdateUrlService from '../services/UpdateUrlService';
+import UrlsRepository from '@repositories/UrlsRepository';
+import CreateUrlService from '@services/CreateUrlService';
+import DeleteUrlService from '@services/DeleteUrlService';
+import UpdateUrlService from '@services/UpdateUrlService';
 
 const urlsRouter = Router();
 const urlsRepository = new UrlsRepository();

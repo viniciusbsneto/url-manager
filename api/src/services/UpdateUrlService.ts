@@ -1,5 +1,5 @@
-import URL from '../models/URL';
-import UrlsRepository from '../repositories/UrlsRepository';
+import URL from '@models/URL';
+import UrlsRepository from '@repositories/UrlsRepository';
 
 interface UpdateUrlDTO {
   address: string;

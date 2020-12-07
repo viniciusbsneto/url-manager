@@ -1,4 +1,4 @@
-import URL from '../models/URL';
+import URL from '@models/URL';
 
 interface CreateUrlDTO {
   address: string;

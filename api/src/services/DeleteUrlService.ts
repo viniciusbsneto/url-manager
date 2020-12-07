@@ -1,4 +1,4 @@
-import UrlsRepository from '../repositories/UrlsRepository';
+import UrlsRepository from '@repositories/UrlsRepository';
 
 class DeleteUrlService {
   constructor(private readonly urlsRepository: UrlsRepository) {

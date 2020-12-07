@@ -1,4 +1,4 @@
-import UsersRepository from '../repositories/UsersRepository';
+import UsersRepository from '@repositories/UsersRepository';
 
 class DeleteUserService {
   constructor(private readonly usersRepository: UsersRepository) {

@@ -1,5 +1,5 @@
-import User from '../models/User';
-import UsersRepository from '../repositories/UsersRepository';
+import User from '@models/User';
+import UsersRepository from '@repositories/UsersRepository';
 
 interface CreateUserDTO {
   name: string;
